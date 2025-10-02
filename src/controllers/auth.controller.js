@@ -48,6 +48,47 @@ async function regsiterController(req,res) {
     }
 }
 
+async function loginController (req,res){
+    try{
+        const {username,password} = req.body
+
+        const user = await userModel.findOne({
+            username
+        })
+
+        if(!user){
+            return res.status(400).json({
+                message : "No user found"
+            })
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if(!isMatch){
+            return res.status(400).json({
+                message : "Invalid passwod"
+            })
+        }
+
+        const token = jwt.sign({
+            id : user._id
+        },process.env.JWT_SECRET)
+
+        res.cookie("token",token)
+
+        res.status(200).json({
+            message : "User logged In",
+            user : {
+                username : user.username,
+                id : user._id
+            }
+        })
+
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
 module.exports = {
-    regsiterController
+    regsiterController,loginController
 }
