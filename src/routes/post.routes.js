@@ -9,7 +9,7 @@ const upload = multer({storage : multer.memoryStorage()})
 //protected routes - only works, if token is available
 router.post('/',
     authMiddleware, //req.user = userData
-    upload.single("image"),
+    upload.single("image"), //makes file readable for express
     createPostController)
 
 
