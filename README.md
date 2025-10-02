@@ -28,8 +28,7 @@ It includes authentication, protected routes, image handling, and AI-powered cap
 ## 🛠️ Installation & Setup
 1. Clone this repository
    ```bash
-   git clone <repo-url>
-   cd MoistMedia
+   git clone https://github.com/Abhinav-Anil-5670/MoistMedia
    ```
 
 2. Install dependencies
@@ -46,7 +45,7 @@ It includes authentication, protected routes, image handling, and AI-powered cap
     IMAGEKIT_PRIVATE_KEY=
     IMAGEKIT_URL_ENDPOINT=
     ```
-    
+
 4. Start the server
    ```bash
    node server.js
